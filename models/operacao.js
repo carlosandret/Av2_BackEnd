@@ -1,6 +1,8 @@
 const validator = require('validator');
-const ATIVOS_VALIDOS = ['PETR4', 'ITSA4', 'BBAS3', 'WEGE3', 'BBSE3'];
+const ATIVOS_VALIDOS = ['CART6', 'BBSE3', 'BBAS3', 'ITSA4', 'WEGE3', 'PETR4'];
 const TIPOS_VALIDOS = ['compra', 'venda'];
+
+const pool = require('../db/postgres');
 
 /**
  * Classe para representar uma operação da bolsa de valores.
@@ -14,6 +16,7 @@ class Operacao {
 	}
 }
 
+/** Função de validação de operação */
 Operacao.prototype.validate = function () {
 	let data = this.data.data;
 	let ativo = this.data.ativo;
@@ -47,7 +50,6 @@ Operacao.prototype.validate = function () {
 		}
 	}
 
-	
 	if (this.errors.length === 0) {
 		// calculando atributos derivados
 		const valorBruto = this.data.preco * this.data.quantidade;
@@ -65,11 +67,71 @@ Operacao.prototype.validate = function () {
 			valorLiquido: valorLiquido
 		}
 		this.data = validatedData;
+		console.log('Operação validada:', this.data);
+
 	}
 }
 
+/** Função de Crianção de operação e inserção no banco */
 Operacao.prototype.create = function () {
-	this.validate();
+	const query_text = 'INSERT INTO operacoes (data, ativo, tipo_de_operacao, quantidade, preco, valor_bruto, taxa_b3, valor_liquido) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;'
+	const query_params = [this.data.data, this.data.ativo, this.data.tipoDeOperacao, this.data.quantidade, this.data.preco, this.data.valorBruto, this.data.taxaB3, this.data.valorLiquido]
+	return new Promise((resolve, reject) => {
+		pool.query(query_text, query_params, (error, result) => {
+			if (error) {
+				reject('Erro ao inserir operação: ' + error);
+			} else {
+				const idDaOperacaoSalva = result.rows[0].id;
+				resolve(idDaOperacaoSalva);
+			}
+		});
+	})
+}
+
+/** Função para exibir todas as operações feitas pelo usuário */
+Operacao.prototype.readAll = function () {
+	const query_text = 'SELECT id, data, ativo, tipo_de_operacao, quantidade, preco, valor_bruto, taxa_b3, valor_liquido FROM operacoes ORDER BY data DESC;';
+	return new Promise((resolve, reject) => {
+		pool.query(query_text, (error, result) => {
+			if (error) {
+				reject('Erro ao buscar operações: ' + error);
+			} else {
+				let listaDeOperacoes = []
+				for (let row of result.rows) {
+					let operacao = parseTuplaToOperacao(row);
+					// aqui estamos pegando o atributo data(somente os dados) da instância de Operacao
+					// já que não precisamos do onjeto inteiro, pois como os dados vêm do banco (portanto validos) e convertidos.
+					listaDeOperacoes.push(operacao.data);
+				}
+				resolve(listaDeOperacoes);
+			}
+		});
+	})
+}
+
+function parseTuplaToOperacao(tupla) {
+	let id = tupla.id
+	let data = tupla.data
+	let ativo = tupla.ativo
+	let tipoDeOperacao = tupla.tipo_de_operacao
+	let quantidade = tupla.quantidade
+	let preco = parseFloat(tupla.preco)
+	let valorBruto = parseFloat(tupla.valor_bruto)
+	let taxaB3 = parseFloat(tupla.taxa_b3)
+	let valorLiquido = parseFloat(tupla.valor_liquido)
+	dadosDaOperacao = {
+		id: id,
+		data: data,
+		ativo: ativo,
+		tipoDeOperacao: tipoDeOperacao,
+		quantidade: quantidade,
+		preco: preco,
+		valorBruto: valorBruto,
+		taxaB3: taxaB3,
+		valorLiquido: valorLiquido
+	}
+	const operacao = new Operacao(dadosDaOperacao)
+	return operacao;
 }
 
 module.exports = Operacao;
