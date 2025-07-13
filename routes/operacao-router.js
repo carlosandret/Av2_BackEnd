@@ -5,15 +5,6 @@ const operacaoController = require('../controllers/operacao-controller')
 
 
 /* ----- funções de roteamento ----- */
-router.get('/', function (req, res) {
-  res.render('pages/home',
-    {
-      title: 'Home',
-      paginaAtiva: 'home'
-    }
-  );
-});
-
 router.get('/nova_operacao', function (req, res) {
   res.render('pages/nova_operacao',
     {
@@ -35,6 +26,5 @@ router.get('/operacoes', function (req, res) {
 
 
 router.post('/salvar_operacao', operacaoController.save)
-
 
 module.exports = router
