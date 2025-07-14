@@ -19,10 +19,15 @@
   },
   "homepage": "https://github.com/ibrunoleal/pwbe#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^17.2.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
     "nodemon": "^3.1.10",
+    "pg": "^8.16.3",
     "validator": "^13.15.0"
   }
 }
