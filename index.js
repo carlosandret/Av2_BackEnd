@@ -6,15 +6,16 @@ dotenv.config()
 
 const port = process.env.APP_PORT || 3001
 
-/** Controle de sessão */
+/** Gerenciamento de sessão */
 var session = require('express-session')
+// Salva sessões no PostgreSQL
 const pgSession = require('connect-pg-simple')(session);
 const pool = require('./db/postgres');
 
 const sessionOptions = session({
   store: new pgSession({
     pool : pool,                // Connection pool
-    tableName : 'session'   // Use another table-name than the default "session" one
+    tableName : 'session'   // Nome da tabela que irá  salvar as sessões
     // Insert connect-pg-simple options here
   }),
   secret: 'process.env.SESSSION_SECRET', // mudar para o .env

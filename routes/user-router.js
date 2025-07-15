@@ -9,6 +9,7 @@ router.get('/entrar', (req, res) => {
     res.render('pages/login',
         {
             title: 'Entrar',
+            paginaAtiva: "login"
         })
 })
 
@@ -24,6 +25,14 @@ router.get('/novo', (req, res) => {
         })
 })
 
+router.get('/perfil', (req, res) => {
+    res.render('pages/user', 
+        {
+            title: 'Perfil',
+            paginaAtiva: 'perfil' 
+        }
+    )
+})
 router.post('/salvar', userController.save)
 
 module.exports = router
