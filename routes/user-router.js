@@ -26,13 +26,15 @@ router.get('/novo', (req, res) => {
 })
 
 router.get('/perfil', (req, res) => {
-    res.render('pages/user', 
+    res.render('pages/perfil', userController.perfl, 
         {
             title: 'Perfil',
             paginaAtiva: 'perfil' 
         }
     )
 })
+
+// router.get('/editar_perfil')
 router.post('/salvar', userController.save)
 
 module.exports = router

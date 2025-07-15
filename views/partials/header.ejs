@@ -1,4 +1,4 @@
-<ul>
+<!-- <ul>
     <li><a 
         <% if (paginaAtiva === 'home') { %> class="active" <% } %> 
         href="/">Home</a></li>
@@ -7,11 +7,71 @@
         href="/operacoes">Operações</a></li>
     <li><a 
         <% if (paginaAtiva === 'perfil') { %> class="active" <% } %>
-        href="/user">Perfil</a></li>
+        href="/perfil">Perfil</a></li>
     <li><a 
         <% if (paginaAtiva === 'operacao') { %> class="active" <% } %>
-        href="/operacoes">Operações</a></li>
+        href="/operacoes">Operações</a></li> 
 
-    
     <li><a href="#sobre">Sobre</a></li>
-</ul>
+
+    <li>
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+        </div>
+    </li>
+</ul> -->
+
+<!-- 
+<nav class="navbar bg-primary border-bottom border-body navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Imoney</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Menu à esquerda -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link <% if (paginaAtiva === 'home') { %>active<% } %>" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <% if (paginaAtiva === 'operacoes') { %>active<% } %>" href="/operacoes">Operações</a>
+        </li>
+      </ul>
+
+      <!-- Menu de login à direita -->
+      <ul class="navbar-nav ms-auto">
+        <% if (usuario) { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= usuario.username %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/user/logout">Sair</a></li>
+            </ul>
+          </li>
+        <% } else { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Visitante
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/user/entrar">Entrar</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/user/novo">Criar Conta</a></li>
+            </ul>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav> -->

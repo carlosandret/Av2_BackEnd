@@ -47,6 +47,19 @@ exports.login = function (req, res) {
     }
 }
 
+// Função para buscar os dados do perfil do usuário
+exports.perfil = function (req, res) {
+    const userId = req.session.usuario.id;
+    const user = new User()
+    user.readOneByUsername(userId)
+        .then((userData) => {
+            res.render('perfil', {user: userData});
+        })
+        .catch((err) => {
+            res.status(500).send("Erro ao carregar perfil: " + err)
+        });
+}
+
 exports.logout = function (req, res) {
     req.session.destroy(function () {
         res.redirect("/")
