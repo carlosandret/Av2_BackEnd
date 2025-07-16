@@ -11,7 +11,7 @@ const pool = require('../db/postgres');
  */
 class Operacao {
 	constructor(data) {
-		this.data = data;
+		this.data = data;	
 		this.errors = [];
 	}
 }

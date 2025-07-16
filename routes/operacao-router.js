@@ -26,18 +26,16 @@ router.get('/operacoes', function (req, res) {
 
 router.post('/salvar_operacao', operacaoController.save)
 
-/** Rotas para editar operação */
-router.post('/id_edicao', operacaoController.idParaEdicao)
+// /** Rotas para editar operação */
+// router.post('/id_edicao', operacaoController.idParaEdicao)
 
 router.get('/editar_operacao', function (req, res) {
-  const idOperacao = Number(req.query.id);
-  console.log(idOperacao)
-  
+  let idOperacao
   res.render('pages/editar_operacao',
     {
       title: 'Edição de operações',
       paginaAtiva: 'editOperacao',
-      idOperacao: idOperacao
+      idOperacao
     }
   );
 })

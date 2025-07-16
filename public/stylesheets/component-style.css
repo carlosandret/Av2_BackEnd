@@ -4,6 +4,17 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.perfil_li {
+  color: white;
+}
+
+.profile-title, .user-email{
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
 /* -------------------- */
 .botao-link {
   display: inline-block;

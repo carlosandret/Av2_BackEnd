@@ -15,7 +15,7 @@ router.get('/entrar', (req, res) => {
 
 router.post('/login', userController.login)
 
-router.get('/logout', userController.logout)
+router.get('/sair', userController.logout)
 
 router.get('/novo', (req, res) => {
     res.render('pages/new_user',
