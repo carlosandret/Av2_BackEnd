@@ -57,7 +57,7 @@ exports.perfil = function (req, res) {
                 user: userData,
                 title: 'Perfil',
                 paginaAtiva: 'paginaPerfil',
-                stylePage: 'cadastroLogin'
+                pageStyles: ['/public/stylesheets/perfil-style.css']
             });
             console.log(userData)
         })

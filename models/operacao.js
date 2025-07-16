@@ -1,5 +1,5 @@
 const validator = require('validator');
-const ATIVOS_VALIDOS = ['CART6', 'BBSE3', 'BBAS3', 'ITSA4', 'WEGE3', 'PETR4'];
+const ATIVOS_VALIDOS = ['CART6', 'BBSE3', 'BBAS3', 'ITSA4', 'WEGE3', 'PETR4', "LOJA7"];
 const TIPOS_VALIDOS = ['compra', 'venda'];
 
 const pool = require('../db/postgres');
@@ -83,6 +83,70 @@ Operacao.prototype.create = function () {
 			} else {
 				const idDaOperacaoSalva = result.rows[0].id;
 				resolve(idDaOperacaoSalva);
+			}
+		});
+	})
+}
+
+/** Função para editar uma operação */
+Operacao.prototype.edit = function (idOperacao) {
+	const query_text = `
+        UPDATE operacoes SET 
+            data = $1, 
+            ativo = $2, 
+            tipo_de_operacao = $3, 
+            quantidade = $4, 
+            preco = $5, 
+            valor_bruto = $6, 
+            taxa_b3 = $7, 
+            valor_liquido = $8
+        WHERE id = $9
+        RETURNING id;
+    `;
+
+	const query_params = [
+        this.data.data,
+        this.data.ativo,
+        this.data.tipoDeOperacao,
+        this.data.quantidade,
+        this.data.preco,
+        this.data.valorBruto,
+        this.data.taxaB3,
+        this.data.valorLiquido,
+        idOperacao // ID da operação que será atualizada
+    ];
+
+	return new Promise((resolve, reject) => {
+		pool.query(query_text, query_params, (error, result) => {
+			if (error) {
+				reject('Erro ao editar operação: ' + error);
+			} else if (result.rowCount === 0) {
+                reject('Operação não encontrada para edição.');
+			} else {
+				const idDaOperacaoEditada = result.rows[0].id;
+				resolve(idDaOperacaoEditada);
+				console.log("Operação atualizada com sucesso")
+			}
+		});
+	})
+}
+
+/** Função para deletar uma operação */
+Operacao.delete = function (idOperacao) {
+	// DELETE FROM nome_da_tabela WHERE id = 123;
+	const query_text = 'DELETE FROM operacoes WHERE id = $1'
+
+	const query_params = [ idOperacao ];// ID da operação que será deletada
+
+	return new Promise((resolve, reject) => {
+		pool.query(query_text, query_params, (error, result) => {
+			if (error) {
+				reject('Erro ao deletar operação: ' + error);
+			} else if (result.rowCount === 0) {
+                reject('Nenhuma operação encontrada ou id fornecido.');
+			} else {
+				resolve(`Operação com ID ${idOperacao} deletada com sucesso`);
+				console.log(`Operação com ID ${idOperacao} deletada com sucesso`)
 			}
 		});
 	})

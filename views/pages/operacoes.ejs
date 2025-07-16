@@ -4,6 +4,7 @@
     <% } else {%>
         <table>
         <thead>
+            <th>ORD</th>
             <th>Data</th>
             <th>Código do ativo</th>
             <th>Tipo de operação</th>
@@ -17,6 +18,9 @@
                     <% for (let i = 0; i < operacoes.length; i++) { %>
                         <% operacao = operacoes[i] %>
                         <tr>
+                            <td>
+                                <%= operacao.id %>
+                            </td>
                             <td>
                                 <%= operacao.data %>
                             </td>
@@ -47,21 +51,36 @@
         </table>
     <% } %>
     
+    <!-- Botão para criação de nova operação -->
     <div class="container-botoes">
         <a class="botao-link" href="/operacao/nova_operacao">Cadastrar nova operação</a>
     </div>
 
+    <!-- Botão para editar operação pelo Id -->
     <div class="container-botoes">
-        <a class="botao-link" href="#" onclick="mostrarInput()">Editar operação por ID</a>
+        <a class="botao-link" href="#" onclick="mostrarInputEdit()">Editar operação</a>
 
         <div id="input-container" style="display: none; margin-top: 10px;">
-            <form action="/operacao/editar_operacao" method="post">
+            <form action="/operacao/id_edicao" method="post">
                 <div>
-                    <input type="number" id="operacaoId" name="operacaoId" placeholder="Digite o ID da operação" />
+                    <input type="number" id="operacaoId" name="idOperacao" placeholder="Digite o ID da operação" />
                     <input type="submit" value="Editar">
                 </div>
             </form>
-            
+        </div>
+    </div>
+
+    <!-- Botão para deletar operação pelo Id -->
+    <div class="container-botoes">
+        <a class="botao-link" href="#" onclick="mostrarInputDelete()">Deletar operação</a>
+
+        <div id="input-container-delete" style="display: none; margin-top: 10px;">
+            <form action="/operacao/deletar_operacao" method="post">
+                <div>
+                    <input type="number" id="operacaoId" name="idOperacao" placeholder="Digite o ID da operação" />
+                    <input type="submit" value="Editar">
+                </div>
+            </form>
         </div>
     </div>
 

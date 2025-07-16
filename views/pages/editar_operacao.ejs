@@ -1,12 +1,9 @@
+
+<div>
+    <h2>Modifique a operação de id: <%= idOperacao %></h2>
+</div>
 <div class="div-form">
-
-    <form action="/operacao/salvar_operacao" method="POST">
-        <div>
-            <label for="operacaoId">Digite o id da operação que deseja editar:</label>
-            <input type="number" name="operacaoId" id="operacaoId" required>
-        </div>
-
-
+    <form action="/operacao/editar_operacao" method="POST">
         <div>
             <label for="inputData">Data</label>
             <input type="date" name="data" id="inputData" required>
@@ -32,7 +29,7 @@
             <input type="number" name="preco" id="inputPreco" required min="0.01" step="0.01">
         </div>
         <div>
-            <input type="submit" value="Registrar operação">
+            <input type="submit" value="Editar operação">
         </div>
     </form>
 </div>

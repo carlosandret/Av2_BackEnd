@@ -24,8 +24,27 @@ router.get('/operacoes', function (req, res) {
   );
 })
 
-
 router.post('/salvar_operacao', operacaoController.save)
 
-router.post('/')
+/** Rotas para editar operação */
+router.post('/id_edicao', operacaoController.idParaEdicao)
+
+router.get('/editar_operacao', function (req, res) {
+  const idOperacao = Number(req.query.id);
+  console.log(idOperacao)
+  
+  res.render('pages/editar_operacao',
+    {
+      title: 'Edição de operações',
+      paginaAtiva: 'editOperacao',
+      idOperacao: idOperacao
+    }
+  );
+})
+
+router.post('/editar_operacao', operacaoController.update);
+
+/** Rotas para deletar operação */
+router.post('/deletar_operacao', operacaoController.delete);
+
 module.exports = router

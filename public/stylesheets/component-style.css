@@ -3,6 +3,8 @@
 body {
   font-family: "Open Sans", sans-serif;
 }
+
+/* -------------------- */
 .botao-link {
   display: inline-block;
   /* Permite largura e altura definidas */
