@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .botao-link {
   display: inline-block;
@@ -31,4 +33,13 @@ body {
   /* Centraliza os botões horizontalmente */
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.li_perfil {
+  color: white;
+}
+
+span {
+  color: red;
+  font-size: 20px;
 }

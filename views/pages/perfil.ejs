@@ -4,9 +4,11 @@
     </div>
     <div>
         <ul>
-            <li><strong>Username:</strong> <%= user.username %></li>
-            <li><strong>Nome:</strong> <%= user.nome %> <%= user.sobrenome %></li>
-            <li><strong>Email:</strong> <%= user.email %></li>
+            <li class="li_perfil"><strong>Username:</strong> <%= user.data.username %></li>
+            <br><br><br>
+            <li class="li_perfil"><strong>Nome:</strong> <%= user.data.nome %> <%= user.data.sobrenome %></li>
+            <br><br><br>
+            <li class="li_perfil"><strong>Email:</strong> <%= user.data.email %></li>
         </ul>
     </div>
     <div class="container-botoes">

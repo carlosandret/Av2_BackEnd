@@ -1,0 +1,89 @@
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+ body {
+     font-family: "Open Sans", sans-serif;
+     background-color: #f4f6f8;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+     margin: 0;
+ }
+
+ .form-container {
+     background-color: #ffffff;
+     padding: 30px 40px;
+     border-radius: 8px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+     width: 100%;
+     max-width: 420px;
+ }
+
+ h2 {
+     color: black;
+     font-weight: 800;
+     text-align: center;
+     margin-bottom: 24px;
+     margin-top: 10px;
+     font-size: 30px;
+
+ }
+
+ label {
+     display: block;
+     margin-bottom: 8px;
+     color: #04AA6D;
+     font-weight: bold;
+ }
+
+ input[type="text"],
+ input[type="email"],
+ input[type="password"] {
+     width: 100%;
+     padding: 10px;
+     margin-bottom: 20px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     font-size: 16px;
+ }
+
+ input[type="text"]:focus,
+ input[type="email"]:focus,
+ input[type="password"]:focus {
+     border: 2px solid #4CAF50;
+     outline: none;
+ }
+
+ input[type="submit"] {
+     background-color: #04AA6D;
+     color: #ffffff;
+     padding: 12px;
+     border: none;
+     border-radius: 4px;
+     width: 105%;
+     font-size: 16px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+ }
+
+ input[type="submit"]:hover {
+     background-color: #1976D2;
+ }
+
+ .acesso-conta {
+     text-align: center;
+     margin-top: 30px;
+ }
+
+
+ .botao-link {
+     color: #4CAF50;
+     text-decoration: none;
+     display: inline-block;
+     transition: transform 0.3s ease;
+ }
+
+ .botao-link:hover {
+     transform: scale(1.05);
+     cursor: pointer;
+ }

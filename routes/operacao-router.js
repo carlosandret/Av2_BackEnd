@@ -27,4 +27,5 @@ router.get('/operacoes', function (req, res) {
 
 router.post('/salvar_operacao', operacaoController.save)
 
+router.post('/')
 module.exports = router

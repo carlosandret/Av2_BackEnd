@@ -49,11 +49,17 @@ exports.login = function (req, res) {
 
 // Função para buscar os dados do perfil do usuário
 exports.perfil = function (req, res) {
-    const userId = req.session.usuario.id;
+    const username = req.session.usuario.username;
     const user = new User()
-    user.readOneByUsername(userId)
+    user.readOneByUsername(username)
         .then((userData) => {
-            res.render('perfil', {user: userData});
+            res.render('pages/perfil', {
+                user: userData,
+                title: 'Perfil',
+                paginaAtiva: 'paginaPerfil',
+                stylePage: 'cadastroLogin'
+            });
+            console.log(userData)
         })
         .catch((err) => {
             res.status(500).send("Erro ao carregar perfil: " + err)

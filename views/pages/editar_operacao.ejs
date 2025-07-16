@@ -1,5 +1,12 @@
 <div class="div-form">
+
     <form action="/operacao/salvar_operacao" method="POST">
+        <div>
+            <label for="operacaoId">Digite o id da operação que deseja editar:</label>
+            <input type="number" name="operacaoId" id="operacaoId" required>
+        </div>
+
+
         <div>
             <label for="inputData">Data</label>
             <input type="date" name="data" id="inputData" required>

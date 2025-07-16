@@ -1,5 +1,8 @@
 <div>
-    <table>
+    <% if (operacoes.length <= 0) { %>
+        <span>Não existem operações cadastradas</span>
+    <% } else {%>
+        <table>
         <thead>
             <th>Data</th>
             <th>Código do ativo</th>
@@ -10,39 +13,57 @@
             <th>Taxas B3</th>
             <th>Valor líquido</th>
         </thead>
-        <tbody>
-                <% for (let i = 0; i < operacoes.length; i++) { %>
-                    <% operacao = operacoes[i] %>
-                    <tr>
-                        <td>
-                            <%= operacao.data %>
-                        </td>
-                        <td>
-                            <%= operacao.ativo %>
-                        </td>
-                        <td>
-                            <%= operacao.tipoDeOperacao %>
-                        </td>
-                        <td>
-                            <%= operacao.quantidade %>
-                        </td>
-                        <td>
-                            <%= operacao.preco %>
-                        </td>
-                        <td>
-                            <%= operacao.valorBruto %>
-                        </td>
-                        <td>
-                            <%= operacao.taxaB3 %>
-                        </td>
-                        <td>
-                            <%= operacao.valorLiquido %>
-                        </td>
-                    </tr>
-                <% } %>
-        </tbody>
-    </table>
+            <tbody>
+                    <% for (let i = 0; i < operacoes.length; i++) { %>
+                        <% operacao = operacoes[i] %>
+                        <tr>
+                            <td>
+                                <%= operacao.data %>
+                            </td>
+                            <td>
+                                <%= operacao.ativo %>
+                            </td>
+                            <td>
+                                <%= operacao.tipoDeOperacao %>
+                            </td>
+                            <td>
+                                <%= operacao.quantidade %>
+                            </td>
+                            <td>
+                                <%= operacao.preco %>
+                            </td>
+                            <td>
+                                <%= operacao.valorBruto %>
+                            </td>
+                            <td>
+                                <%= operacao.taxaB3 %>
+                            </td>
+                            <td>
+                                <%= operacao.valorLiquido %>
+                            </td>
+                        </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    <% } %>
+    
     <div class="container-botoes">
-        <a class="botao-link" href="/nova_operacao">Cadastrar nova operação</a>
+        <a class="botao-link" href="/operacao/nova_operacao">Cadastrar nova operação</a>
     </div>
+
+    <div class="container-botoes">
+        <a class="botao-link" href="#" onclick="mostrarInput()">Editar operação por ID</a>
+
+        <div id="input-container" style="display: none; margin-top: 10px;">
+            <form action="/operacao/editar_operacao" method="post">
+                <div>
+                    <input type="number" id="operacaoId" name="operacaoId" placeholder="Digite o ID da operação" />
+                    <input type="submit" value="Editar">
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+</div>
 </div>
